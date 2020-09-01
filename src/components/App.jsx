@@ -1,5 +1,6 @@
 import { hot } from 'react-hot-loader/root';
 import React, {useState, useEffect } from 'react';
+import './App/app.scss';
 
 // Components
 // import { Input } from 'chayns-components/lib';
