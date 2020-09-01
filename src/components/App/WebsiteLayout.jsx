@@ -1,7 +1,7 @@
 import React from 'react';
-import {PropTypes} from 'prop-types';
+import { PropTypes } from 'prop-types';
 
-function WebsiteLayout({siteId, locationId, appstoreName}) {
+function WebsiteLayout({ siteId, locationId, appstoreName }) {
     return (
         <div onClick={() => { chayns.openUrlInBrowser(`http://chayns.net/${siteId}`); }}>
 
