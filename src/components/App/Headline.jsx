@@ -8,7 +8,7 @@ import './app.scss';
 const Headline = ({ headline }) => (
     <div className="Suche">
         <h1>{headline}</h1>
-        <Input className="input" id="textInp" placeholder="Suche" />
+        <Input className="inputSearch" id="textInp" placeholder="Suche" />
     </div>
 );
 

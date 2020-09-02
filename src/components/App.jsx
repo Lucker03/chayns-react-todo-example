@@ -7,6 +7,7 @@ import './App/app.scss';
 import Headline from './App/Headline';
 import Intro from './App/Intro';
 import WebsiteList from './App/WebsiteList';
+import Form from './App/Form';
 
 
 // We use PureComponent instead of Component because it handles the shouldComponentUpdate method for us.
@@ -15,9 +16,10 @@ const App = () => {
     const [searchString, setSearchString] = useState('Ahaus');
     return (
         <>
-            <Headline setSearchString={setSearchString} headline="My Favorite Sites"/>
-            <Intro intro="Dies ist meine Seite, wo Du auf die Suche nach verschiedenen Chayns Pages gehen kannst."/>
-            <WebsiteList searchString={searchString}/>
+            <Headline setSearchString={setSearchString} headline="My Favorite Sites" />
+            <Intro intro="Dies ist meine Seite, wo Du auf die Suche nach verschiedenen Chayns Pages gehen kannst." />
+            <WebsiteList searchString={searchString} />
+            <Form />
         </>
     );
 };
