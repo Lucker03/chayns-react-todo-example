@@ -14,9 +14,11 @@ const WebsiteList = ({ searchString }) => {
             const fetchData = await fetch(`https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=${searchString}&Skip=${skip}&Take=20`);
             const jsonData = await fetchData.json();
             const data = jsonData.Data;
+
             setShownArray((prevList) => prevList.concat(data));
         } catch {
-            console.log("fehler beim Laden");
+            // eslint-disable-next-line no-console
+            console.log('fehler beim Laden');
         }
         setIsLoading(false);
     };
@@ -25,13 +27,9 @@ const WebsiteList = ({ searchString }) => {
         getData(0);
     }, []);
 
-    useEffect(() => {
-        console.log("ArrayEffect", shownArray);
-    }, [shownArray]);
-
     return (
         <div>
-            {isLoading && <SmallWaitCursor show />}
+            {isLoading && <SmallWaitCursor show/>}
             <div className="container">
                 <div className="pages">
                     {shownArray.map((datas) => (

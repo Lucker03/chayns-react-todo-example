@@ -10,7 +10,7 @@ function WebsiteLayout({ siteId, locationId, appstoreName }) {
                     <img className="pageimg" src="https://chayns.tobit.com/storage/75508-06235/Images/icon-57.png" alt="Platzhalter"/>
                 </object>
             </div>
-            <div>{appstoreName}</div>
+            <div className="appstoreName">{appstoreName}</div>
         </div>
     );
 }
