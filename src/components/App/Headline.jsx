@@ -5,14 +5,13 @@ import './app.scss';
 
 // Use PureComponent instead of Component because it handles the shouldComponentUpdate method for u.
 // If u want to define ur own shouldComponentUpdate logic use Component instead of PureComponent.
-const Headline = ({ headline, setSearchString }) => {
+const Headline = ({ headline }) => {
     return (
         <div>
             <h1>{headline}</h1>
-            <Input placeholder="Suche" onClick={setSearchString}/>
+            <Input placeholder="Suche"/>
         </div>
     );
-
 };
 
 Headline.propTypes = {
