@@ -5,10 +5,17 @@ import './app.scss';
 
 // Use PureComponent instead of Component because it handles the shouldComponentUpdate method for u.
 // If u want to define ur own shouldComponentUpdate logic use Component instead of PureComponent.
-const Headline = ({ headline }) => (
+// eslint-disable-next-line react/prop-types
+const Headline = ({ headline, searchString, setSearchString }) => (
     <div className="Suche">
         <h1>{headline}</h1>
-        <Input className="inputSearch" id="textInp" placeholder="Suche" />
+        <Input
+            className="inputSearch"
+            id="textInp"
+            placeholder="Suche"
+            value={searchString}
+            onChange={setSearchString}
+        />
     </div>
 );
 
