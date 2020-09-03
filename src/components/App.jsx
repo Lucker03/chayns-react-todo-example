@@ -1,24 +1,36 @@
 import { hot } from 'react-hot-loader/root';
-import React, { PureComponent } from 'react';
+import React, { useState } from 'react';
+import './App/app.scss';
 
 // Components
-import Headline from './header/headline/Headline';
-import Intro from './header/intro/Intro';
-import Todos from './todos/Todos';
+// import { Input } from 'chayns-components/lib';
+import Headline from './App/Headline';
+import Intro from './App/Intro';
+import WebsiteList from './App/WebsiteList';
+import Form from './App/Form';
+
 
 // We use PureComponent instead of Component because it handles the shouldComponentUpdate method for us.
 // If we want to define our own shouldComponentUpdate logic we have to use Component instead of PureComponent.
-class App extends PureComponent {
-    render() {
-        return (
-            <>
-                <Headline headline="chayns® React Todo Example"/>
-                <Intro intro="This is a very simple and basic example of how u can use chayns® and React together."/>
-                <Todos/>
-            </>
-        );
-    }
-}
+const App = () => {
+    const [searchString, setSearchString] = useState();
+    const [isLoadingFirst, setIsLoadingFirst] = useState(true);
+    return (
+        <>
+            <Headline searchString={searchString} setSearchString={setSearchString} headline="My Favorite Sites"/>
+            <Intro className="first" intro="Dies ist meine Seite, wo Du auf die Suche nach verschiedenen Chayns Pages gehen kannst."/>
+            <WebsiteList
+                searchString={searchString}
+                setSearchString={setSearchString}
+                isLoadingFirst={isLoadingFirst}
+                setIsLoadingFirst={setIsLoadingFirst}
+            />
+            {!isLoadingFirst && (
+                <Form/>
+            )}
+        </>
+    );
+};
 
 export default App;
 export const HotApp = hot(App);

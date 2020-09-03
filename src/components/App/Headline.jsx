@@ -1,0 +1,26 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Input } from 'chayns-components/lib';
+import './app.scss';
+
+// Use PureComponent instead of Component because it handles the shouldComponentUpdate method for u.
+// If u want to define ur own shouldComponentUpdate logic use Component instead of PureComponent.
+// eslint-disable-next-line react/prop-types
+const Headline = ({ headline, searchString, setSearchString }) => (
+    <div className="Suche">
+        <h1>{headline}</h1>
+        <Input
+            className="inputSearch"
+            id="textInp"
+            placeholder="Suche"
+            value={searchString}
+            onChange={setSearchString}
+        />
+    </div>
+);
+
+Headline.propTypes = {
+    headline: PropTypes.string.isRequired,
+};
+
+export default Headline;
