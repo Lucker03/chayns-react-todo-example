@@ -11,11 +11,17 @@ const WebsiteList = ({ searchString = 'Ahaus', isLoadingFirst, setIsLoadingFirst
     const [timeOutId, setTimeOutId] = useState(0);
     const [buttontimeOutId, setButtonTimeOutId] = useState(0);
     const [disabledButton, setDisabledButton] = useState(true);
+    const [lastSearch, setLastSearch] = useState('');
 
     const getData = async (skip) => {
         try {
+            let fetchData;
             setIsLoading(true);
-            const fetchData = await fetch(`https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=${searchString}&Skip=${skip}&Take=20`);
+            if (searchString !== '') {
+                fetchData = await fetch(`https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=${searchString}&Skip=${skip}&Take=20`);
+            } else {
+                fetchData = await fetch(`https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=${lastSearch}&Skip=${skip}&Take=20`);
+            }
             const jsonData = (await fetchData.json()).Data;
             setIsLoadingFirst(false);
             if (jsonData !== null) {
@@ -43,6 +49,7 @@ const WebsiteList = ({ searchString = 'Ahaus', isLoadingFirst, setIsLoadingFirst
         }
         setTimeOutId(setTimeout(() => {
             if (searchString !== '') {
+                setLastSearch(searchString);
                 setShownArray([]);
                 getData(0);
             }
