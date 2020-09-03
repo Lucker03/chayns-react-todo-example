@@ -18,7 +18,7 @@ const App = () => {
     return (
         <>
             <Headline searchString={searchString} setSearchString={setSearchString} headline="My Favorite Sites"/>
-            <Intro intro="Dies ist meine Seite, wo Du auf die Suche nach verschiedenen Chayns Pages gehen kannst."/>
+            <Intro className="first" intro="Dies ist meine Seite, wo Du auf die Suche nach verschiedenen Chayns Pages gehen kannst."/>
             <WebsiteList
                 searchString={searchString}
                 setSearchString={setSearchString}

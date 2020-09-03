@@ -8,7 +8,7 @@ class Intro extends PureComponent {
         const { intro } = this.props;
 
         return (
-            <div className="tapp__intro">
+            <div className="tapp__intro first">
                 {intro}
             </div>
         );

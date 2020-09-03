@@ -67,13 +67,14 @@
 }
  
 .first {
-  margin-bottom: 20px;
+  margin-bottom: 20px !important;
 }
 
 .appstoreName {
   overflow: hidden;
   width: 100px;
   height: 25px;
+  text-overflow: ellipsis;
 }
 
 .headline {

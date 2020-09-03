@@ -5,24 +5,21 @@ import WebsiteLayout from './WebsiteLayout';
 import './app.scss';
 
 // eslint-disable-next-line react/prop-types
-const WebsiteList = ({ searchString = 'Ahaus', setSearchString, isLoadingFirst, setIsLoadingFirst }) => {
+const WebsiteList = ({ searchString = 'Ahaus', isLoadingFirst, setIsLoadingFirst }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [shownArray, setShownArray] = useState([]);
     const [timeOutId, setTimeOutId] = useState(0);
+    const [buttontimeOutId, setButtonTimeOutId] = useState(0);
     const [disabledButton, setDisabledButton] = useState(true);
 
     const getData = async (skip) => {
         try {
             setIsLoading(true);
-            if (searchString === '') {
-                setSearchString('Ahaus');
-            }
             const fetchData = await fetch(`https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=${searchString}&Skip=${skip}&Take=20`);
-            const jsonData = await fetchData.json();
-            const data = jsonData.Data;
+            const jsonData = (await fetchData.json()).Data;
             setIsLoadingFirst(false);
-            if (data !== null) {
-                setShownArray((prevList) => prevList.concat(data));
+            if (jsonData !== null) {
+                setShownArray((prevList) => prevList.concat(jsonData));
             }
         } catch {
             // eslint-disable-next-line no-console
@@ -31,19 +28,30 @@ const WebsiteList = ({ searchString = 'Ahaus', setSearchString, isLoadingFirst, 
         setIsLoading(false);
     };
 
+    const checkButton = (check) => {
+        if (buttontimeOutId > 0) {
+            clearTimeout(buttontimeOutId);
+        }
+        setButtonTimeOutId(setTimeout(() => {
+            getData(check);
+        }, 500));
+    };
+
     useEffect(() => {
         if (timeOutId > 0) {
             clearTimeout(timeOutId);
         }
         setTimeOutId(setTimeout(() => {
-            setShownArray([]);
-            getData(0);
+            if (searchString !== '') {
+                setShownArray([]);
+                getData(0);
+            }
             setTimeOutId(0);
         }, 500));
     }, [searchString]);
 
     useEffect(() => {
-        if ((shownArray.length % 4) !== 0) {
+        if ((shownArray.length % 20) !== 0) {
             setDisabledButton(true);
         } else {
             setDisabledButton(false);
@@ -52,22 +60,24 @@ const WebsiteList = ({ searchString = 'Ahaus', setSearchString, isLoadingFirst, 
 
     return (
         <div>
-            {isLoading && <SmallWaitCursor show/>}
             <div className="container">
                 <div className="pages">
                     {shownArray.map((datas) => (
                         <WebsiteLayout
                             siteId={datas.siteId}
                             locationId={datas.locationId}
-                            appstoreName={`${datas.appstoreName.substring(0, 10)}...`}
+                            appstoreName={datas.appstoreName}
                             facebookId={datas.facebookId}
                         />
                     ))}
                 </div>
             </div>
+            <div className="send">
+                {isLoading && <SmallWaitCursor show/>}
+            </div>
             <div className="more">
                 {!disabledButton && !isLoadingFirst && (
-                    <Button className="button" id="loadMore" onClick={() => getData(shownArray.length)}>Mehr Laden</Button>
+                    <Button className="button" id="loadMore" onClick={() => checkButton(shownArray.length)}>Mehr</Button>
                 )}
             </div>
         </div>
