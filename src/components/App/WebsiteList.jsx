@@ -58,7 +58,7 @@ const WebsiteList = ({ searchString = 'Ahaus', isLoadingFirst, setIsLoadingFirst
     }, [searchString]);
 
     useEffect(() => {
-        if ((shownArray.length % 20) !== 0) {
+        if ((shownArray.length % 20) !== 0 || shownArray.length === 0) {
             setDisabledButton(true);
         } else {
             setDisabledButton(false);
