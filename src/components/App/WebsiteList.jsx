@@ -18,11 +18,11 @@ const WebsiteList = ({ searchString = 'Ahaus', isLoadingFirst, setIsLoadingFirst
             let fetchData;
             setIsLoading(true);
             if (searchString !== '') {
-                fetchData = await fetch(`https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=${searchString}&Skip=${skip}&Take=20`);
+                fetchData = await fetch(`https://chayns2.tobit.com/SiteSearchApi/location/search/${searchString}/?skip=${skip}&take=20`);
             } else {
-                fetchData = await fetch(`https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=${lastSearch}&Skip=${skip}&Take=20`);
+                fetchData = await fetch(`https://chayns2.tobit.com/SiteSearchApi/location/search/${lastSearch}/?skip=${skip}&take=20`);
             }
-            const jsonData = (await fetchData.json()).Data;
+            const jsonData = (await fetchData.json());
             setIsLoadingFirst(false);
             if (jsonData !== null) {
                 setShownArray((prevList) => prevList.concat(jsonData));
@@ -73,7 +73,7 @@ const WebsiteList = ({ searchString = 'Ahaus', isLoadingFirst, setIsLoadingFirst
                         <WebsiteLayout
                             siteId={datas.siteId}
                             locationId={datas.locationId}
-                            appstoreName={datas.appstoreName}
+                            appstoreName={datas.locationName}
                             facebookId={datas.facebookId}
                         />
                     ))}
