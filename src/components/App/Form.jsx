@@ -33,7 +33,6 @@ const Form = () => {
              Kommentar: ${valueComment}`),
         }).then((data) => {
             if (data.status === 200) chayns.dialog.alert('', 'Danke für dein Feedback');
-            setvalueName('');
             setvalueMail('');
             setvalueUrl('');
             setvalueComment('');
