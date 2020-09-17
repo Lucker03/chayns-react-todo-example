@@ -1,22 +1,12 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 
 // Use PureComponent instead of Component because it handles the shouldComponentUpdate method for u.
 // If u want to define ur own shouldComponentUpdate logic use Component instead of PureComponent.
-class Intro extends PureComponent {
-    render() {
-        const { intro } = this.props;
-
-        return (
-            <div className="tapp__intro first">
-                {intro}
-            </div>
-        );
-    }
-}
-
-Intro.propTypes = {
-    intro: PropTypes.string.isRequired,
-};
+// eslint-disable-next-line react/prop-types
+const Intro = ({ intro }) => (
+    <div className="tapp__intro first">
+        {intro}
+    </div>
+);
 
 export default Intro;

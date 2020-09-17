@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
 import './app.scss';
 
-const WebsiteLayout = ({ siteId, locationId, appstoreName }) => {
+const WebsiteLayout = ({
+    siteId,
+    locationId,
+    appstoreName,
+}) => {
     const [source, setSource] = useState('152342');
 
     const fetchImg = async () => {
@@ -20,6 +24,7 @@ const WebsiteLayout = ({ siteId, locationId, appstoreName }) => {
     useEffect(() => {
         fetchImg();
     }, []);
+
     return (
         <div className="pageDiv onepagearea" onClick={() => { chayns.openUrlInBrowser(`http://chayns.net/${siteId}`); }}>
             <div>

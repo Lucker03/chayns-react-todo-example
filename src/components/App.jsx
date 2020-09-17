@@ -9,9 +9,6 @@ import Intro from './App/Intro';
 import WebsiteList from './App/WebsiteList';
 import Form from './App/Form';
 
-
-// We use PureComponent instead of Component because it handles the shouldComponentUpdate method for us.
-// If we want to define our own shouldComponentUpdate logic we have to use Component instead of PureComponent.
 const App = () => {
     const [searchString, setSearchString] = useState();
     const [isLoadingFirst, setIsLoadingFirst] = useState(true);

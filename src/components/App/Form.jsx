@@ -50,6 +50,7 @@ const Form = () => {
             sendIntercom();
         }
     };
+
     return (
         <Accordion open={accordionIsOpen} head="Schicke uns Deine Page">
             <div className="accordion__content Form_content input-group">
